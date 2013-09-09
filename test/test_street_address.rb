@@ -10,6 +10,7 @@ class StreetAddressUsTest < Test::Unit::TestCase
     @addr4 = "1005 Gravenstein Hwy N, Sebastopol CA 95472"
     @addr5 = "PO BOX 450, Chicago IL 60657"
     @addr6 = "2730 S Veitch St #207, Arlington, VA 22206"
+    @addr7 = "NORTH AVE AND BEACH LOT, CHICAGO, IL"
 
     @int1 = "Hollywood & Vine, Los Angeles, CA"
     @int2 = "Hollywood Blvd and Vine St, Los Angeles, CA"
@@ -118,6 +119,9 @@ class StreetAddressUsTest < Test::Unit::TestCase
     
     addr = StreetAddress::US.parse(@addr6)
     assert_equal("207", addr.unit)
+
+    addr = StreetAddress::US.parse(@addr7)
+    assert_equal addr.street, nil
 
     addr = StreetAddress::US.parse(@int1)
     assert_equal addr.city, "Los Angeles"

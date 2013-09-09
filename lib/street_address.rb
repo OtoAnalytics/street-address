@@ -870,11 +870,12 @@ module StreetAddress
         s = ""
         case format
         when :line1
-          s += line1(s)
+          l = line1(s)
+          s += l if l
         else
           if intersection?
             s += prefix + " " unless prefix.nil?
-            s += street 
+            s += street unless street.nil?
             s += " " + street_type unless street_type.nil?
             s += " " + suffix unless suffix.nil?
             s += " and"
